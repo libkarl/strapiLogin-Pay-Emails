@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  strapi:
+    build:
+      context: ../packages/strapi/
+      dockerfile: ./build/Dockerfile
+    image: devweb/strapi
+    ports:
+      - "1337:1337"
