@@ -8,7 +8,7 @@ import CompanyIntro from "components/Home/Team";
 import { Box } from "@mui/material";
 
 const Homepage = () => {
-  const { data, error } = useStrapiRequest<any>({
+  const { data, error } = useStrapiRequest({
     url: "/api/homepage?populate=components",
   });
 

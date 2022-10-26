@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { HorizontalRule } from "@mui/icons-material";
-import { Card, CardMedia, Stack, Typography } from "@mui/material";
+import { Card, CardMedia, Grid, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import Image from "next/image";
 import theme from "styles/theme";
@@ -15,8 +15,8 @@ const TeamMemberBox = styled(Box)({
 
 const CompanyIntro = () => {
   return (
-    <Box sx={{ height: "60vh" }}>
-      <TeamMemberBox>
+    <Box sx={{ height: { xs: "120vh", sm: "60vh" } }}>
+      <TeamMemberBox marginBottom={{ xs: "-3rem", sm: "0rem" }}>
         <Typography
           variant={"subtitle2"}
           sx={{
@@ -37,19 +37,23 @@ const CompanyIntro = () => {
 
       <Stack
         p={4}
-        width="60%"
+        width={{ xs: "95%", sm: "60%" }}
+        minWidth="250px"
         margin="auto"
         height="92%"
-        direction="row"
-        spacing={6}
+        direction={{ xs: "column", sm: "row" }}
+        spacing={{ xs: 4, sm: 8 }}
         justifyContent="center"
+        alignItems="center"
       >
         <Stack
           height="100%"
-          width="50%"
-          sx={{ maxWidth: 520 }}
+          width="60%"
+          sx={{ maxWidth: 520, minWidth: 200 }}
           direction="column"
           spacing={2}
+          margin="auto"
+          alignItems="center"
         >
           <Box height="50%" width="100%" bgcolor="green">
             <CardMedia
@@ -74,8 +78,8 @@ const CompanyIntro = () => {
               <Typography variant="body2">
                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                 Integer malesuada. Sed elit dui, pellentesque a, faucibus vel,
-                interdum nec, diam. Donec iaculis gravida nulla. Lorem ipsum
-                dolor sit amet, consectetuer.
+                interdum nec, diam. Sed elit dui, pellentesque a, faucibus vel,
+                interdum nec, diam.
               </Typography>
             </Stack>
           </Box>
@@ -83,10 +87,12 @@ const CompanyIntro = () => {
 
         <Stack
           height="100%"
-          width="50%"
-          sx={{ maxWidth: 520 }}
+          width="60%"
+          sx={{ maxWidth: 520, minWidth: 200 }}
           direction="column"
           spacing={2}
+          margin="auto"
+          alignItems="center"
         >
           <Box height="50%">
             <Stack direction="column" spacing={2} justifyContent="left">
@@ -99,12 +105,12 @@ const CompanyIntro = () => {
               >
                 CREATIVE DESIGN
               </Typography>
-              <Typography variant={"h6"}>UX/UI Design</Typography>
+              <Typography variant={"h6"}>Frontend Enginer</Typography>
               <Typography variant="body2">
                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                 Integer malesuada. Sed elit dui, pellentesque a, faucibus vel,
-                interdum nec, diam. Donec iaculis gravida nulla. Lorem ipsum
-                dolor sit amet, consectetuer
+                interdum nec, diam. Sed elit dui, pellentesque a, faucibus vel,
+                interdum nec, diam.
               </Typography>
             </Stack>
           </Box>
