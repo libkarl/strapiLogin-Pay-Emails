@@ -1,11 +1,11 @@
 import "styles/globals.css";
 import type { AppProps } from "next/app";
-import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import createEmotionCache from "styles/createEmotionsCache";
-import { ThemeProvider } from "@mui/material/styles";
 import Head from "next/head";
 import theme from "styles/theme";
+import ThemeProvider from "components/ui/ThemeProvider";
+import GlobalStyles from "components/ui/GlobalStyle";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -21,9 +21,8 @@ export default function MyApp(props: MyAppProps) {
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
+      <ThemeProvider>
+        <GlobalStyles />
         <Component {...pageProps} />
       </ThemeProvider>
     </CacheProvider>

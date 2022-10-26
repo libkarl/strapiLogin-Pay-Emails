@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_homepage_heroes",
+  "info": {
+    "displayName": "Hero",
+    "icon": "align-justify",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "neco": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    }
+  }
+}
