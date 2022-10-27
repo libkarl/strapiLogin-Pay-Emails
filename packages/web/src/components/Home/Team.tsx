@@ -40,7 +40,7 @@ const CompanyIntro = () => {
         width="60%"
         margin="auto"
         height="92%"
-        direction="row"
+        direction="column"
         spacing={6}
         justifyContent="center"
       >
