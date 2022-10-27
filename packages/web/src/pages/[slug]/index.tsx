@@ -6,11 +6,13 @@ import { DeveloperIntroduction } from "components/Home/Team";
 import Navbar from "components/Home/Navbar";
 import CompanyIntro from "components/Home/Team";
 import { Box } from "@mui/material";
-import Services from "components/Home/Services";
+import { useRouter } from "next/router";
 
 const Homepage = () => {
+  let router = useRouter();
+
   const { data, error } = useStrapiRequest<any>({
-    url: "/api/homepage?populate=deep",
+    url: "/api/`{router.slug}`?populate=deep",
   });
   const components = data?.data.attributes?.components;
   const teamSection = components?.find(
@@ -35,7 +37,6 @@ const Homepage = () => {
     <Box>
       <Navbar />
       <CompanyIntro {...teamData} />
-      <Services />
 
       {/* {cc.map((e) => {
         const Component = components[e.__component];

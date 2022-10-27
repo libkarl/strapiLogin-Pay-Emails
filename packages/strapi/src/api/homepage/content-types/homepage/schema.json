@@ -4,7 +4,8 @@
   "info": {
     "singularName": "homepage",
     "pluralName": "homepages",
-    "displayName": "homepage"
+    "displayName": "homepage",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,7 +16,9 @@
       "type": "dynamiczone",
       "components": [
         "homepage.hero",
-        "homepage.testimonials"
+        "homepage.testimonials",
+        "homepage.team",
+        "homepage.services"
       ],
       "required": true
     }
