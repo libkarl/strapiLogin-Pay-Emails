@@ -10,23 +10,7 @@ export const muiLight: ThemeOptions = {
     primary: {
       main: "#1760a5",
       light: "skyblue",
-    },
-    secondary: {
-      main: "#15c630",
-    },
-  },
-  shape: {
-    borderRadius: 10,
-  },
-};
-
-export const muiDark: ThemeOptions = {
-  palette: {
-    mode: "dark",
-
-    primary: {
-      main: "#1760a5",
-      light: "skyblue",
+      dark: "#1073e5",
     },
     secondary: {
       main: "#15c630",

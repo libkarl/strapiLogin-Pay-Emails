@@ -1,4 +1,8 @@
 import "@emotion/react";
+import {
+  Palette as MuiPallete,
+  PaletteOptions as MuiPaletteOptions,
+} from "@mui/material/styles/createPalette";
 
 import type { Theme as MuiTheme } from "@mui/system";
 
@@ -45,5 +49,17 @@ declare module "@emotion/react" {
 
 declare module "@mui/material/styles" {
   // eslint-disable-next-line
-  export interface Theme extends Options {}
+  export interface Theme extends Options {
+    custom: { white: sting };
+  }
+}
+
+declare module "@mui/material/styles/createPalette" {
+  interface Palette extends MuiPallete {
+    custom: { white: string };
+  }
+
+  interface PaletteOptions extends MuiPaletteOptions {
+    custom?: { white: string };
+  }
 }

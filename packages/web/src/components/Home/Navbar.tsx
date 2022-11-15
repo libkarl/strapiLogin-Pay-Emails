@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Mail, Notifications, Pets } from "@mui/icons-material";
+import { DonutLarge, Mail, Notifications, Pets } from "@mui/icons-material";
 import {
   AppBar,
   Avatar,
@@ -7,11 +7,14 @@ import {
   InputBase,
   Menu,
   MenuItem,
+  TextField,
   Toolbar,
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
+import { useTheme } from "@mui/material/styles";
+import SearchIcon from "@mui/icons-material/Search";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -43,17 +46,57 @@ const AvatartBox = styled(Box)(({ theme }) => ({
   },
 }));
 
+const SearchIconWrapper = styled("div")(({ theme }) => ({
+  padding: theme.spacing(0, 1),
+  height: "70%",
+  position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  color: theme.palette.primary.dark,
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  "& .MuiInputBase-input": {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      width: "12ch",
+      "&:focus": {
+        width: "20ch",
+      },
+    },
+  },
+}));
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const theme = useTheme();
   return (
     <AppBar position="sticky">
       <StyledToolbar>
-        <Typography variant="h6" sx={{ display: { xs: "none", sm: "block" } }}>
-          StyledToolbar
+        <Typography
+          variant="h6"
+          sx={{ display: { xs: "none", sm: "block", marginTop: "10px" } }}
+        >
+          <DonutLarge />
         </Typography>
         <Pets sx={{ display: { xs: "block", sm: "none" } }} />
         <Search>
-          <InputBase placeholder="Input text" />
+          <SearchIconWrapper
+            onClick={() => {
+              console.log("console log text");
+            }}
+          >
+            <SearchIcon />
+          </SearchIconWrapper>
+          <StyledInputBase
+            placeholder="Search…"
+            inputProps={{ "aria-label": "search" }}
+          />
         </Search>
         <IconsBox>
           <Badge badgeContent={4} color="error">

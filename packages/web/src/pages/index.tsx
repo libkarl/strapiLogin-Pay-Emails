@@ -7,95 +7,70 @@ import Navbar from "components/Home/Navbar";
 import CompanyIntro from "components/Home/Team";
 import { Box } from "@mui/material";
 import Services from "components/Home/Services";
+import Script from "next/script";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
+import ActionAreaCard from "components/CardTitle";
+import styled from "@emotion/styled";
 
-const Homepage = () => {
-  const { data, error } = useStrapiRequest<any>({
-    url: "/api/homepage?populate=deep",
-  });
-  const components = data?.data.attributes?.components;
-  const teamSection = components?.find(
-    (item) => item.__component === "homepage.team"
-  );
-  const teamData: DeveloperIntroduction = {
-    developer1: {
-      dev_type: teamSection?.developer1?.devtype,
-      dev_image:
-        teamSection?.developer1?.devimg.data.attributes.formats.medium.url,
-      dev_intoduction: teamSection?.developer1?.introduction,
-    },
-    developer2: {
-      dev_type: teamSection?.developer2?.devtype,
-      dev_image:
-        teamSection?.developer2?.devimg.data.attributes.formats.medium.url,
-      dev_intoduction: teamSection?.developer2?.introduction,
-    },
-  };
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  padding: theme.spacing(2),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 
+const Homepage = ({ articles }) => {
   return (
     <Box>
+      <Script
+        type="text/javascript"
+        src="http://localhost:1337/plugins/strapi-stripe/static/stripe.js"
+      ></Script>
       <Navbar />
-      <CompanyIntro {...teamData} />
-      <Services />
-
-      {/* {cc.map((e) => {
-        const Component = components[e.__component];
-        if (!Component) {
-          return null;
-        }
-        console.log(Component);
-        return <Component key={e.id} {...e} />;
-      })} */}
+      <Grid
+        container
+        spacing={{ xs: 2, md: 3 }}
+        columns={{ xs: 4, sm: 8, md: 12 }}
+      >
+        {articles.data.map((article, index) => (
+          <Grid item xs={2} sm={4} md={4} key={index}>
+            <Item>
+              <ActionAreaCard {...article.attributes} />
+            </Item>
+          </Grid>
+        ))}
+      </Grid>
     </Box>
   );
 };
 
+export async function getServerSideProps() {
+  // const loginINFO = {
+  //   identifier: "karel.hb@email.cz",
+  //   password: "test1234",
+  // };
+  // const login = await fetch("http://localhost:1337/api/auth/local", {
+  //   method: "POST",
+  //   headers: {
+  //     Accept: "application/json",
+  //     "Content-Type": "application/json",
+  //   },
+
+  //   body: JSON.stringify(loginINFO),
+  // });
+
+  // const loginResponse = await login.json();
+
+  const res = await fetch(`http://localhost:1337/api/payed-articles`);
+  const articles = await res.json();
+  console.log(articles);
+  return {
+    props: {
+      articles: articles,
+      // authData: loginResponse,
+    },
+  };
+}
+
 export default Homepage;
-
-// {
-//   /* <Container maxWidth="lg">
-//       <Box
-//         sx={{
-//           my: 4,
-//           display: "flex",
-//           flexDirection: "column",
-//           justifyContent: "center",
-//           alignItems: "center",
-//         }}
-//       >
-//         <Typography variant="h4" component="h1" gutterBottom>
-//           MUI v5 + Next.js with TypeScript example
-//         </Typography>
-
-//         <Link href="/about" color="secondary">
-//           Go to the about page
-//         </Link>
-//         <ProTip />
-//         <Copyright />
-//       </Box>
-//     </Container> */
-// }
-
-// {
-//   /* <Container maxWidth="lg">
-//       <Box
-//         sx={{
-//           my: 4,
-//           display: "flex",
-//           flexDirection: "column",
-//           justifyContent: "center",
-//           alignItems: "center",
-//         }}
-//       >
-//         <Typography variant="h4" component="h1" gutterBottom>
-//           MUI v5 + Next.js with TypeScript example
-//         </Typography>
-//         <Box maxWidth="sm">
-//           <Button variant="contained" component={Link} noLinkStyle href="/">
-//             Go to the home page
-//           </Button>
-//         </Box>
-//         <ProTip />
-//         <Copyright />
-//       </Box>
-//     </Container> */
-// }
